@@ -144,7 +144,11 @@ h1 {
 }
 
 .error {
-  border: 2px solid rgb(164, 68, 68);
+  color: rgb(164, 68, 68);
+}
+.error::after {
+  font-size: 0.7em;
+  content: "Can't be zero";
 }
 
 .result-section {
@@ -221,6 +225,9 @@ h1 {
   }
   .results__total-value, .results__tip-value {
     font-size: 2em;
+  }
+  .error {
+    padding-left: 100px;
   }
 }
 
