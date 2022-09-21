@@ -11,6 +11,8 @@ let buttons = document.querySelectorAll("button")
 
 let tipValue = 15;
 
+let alert = document.getElementById("alert")
+
 buttons.forEach(element => {
     element.addEventListener("click", e=>{
 
@@ -41,11 +43,57 @@ function calculateTip() {
 }
 
 
+
+// Actualizando custom
+
+let custom = document.getElementById("custom")
+custom.addEventListener("click", function(){
+    buttons.forEach(elements => {
+        elements.classList.remove("button--selected")
+        });
+})
+
+custom.addEventListener("input", function(){
+    tipValue = parseInt(custom.value)
+
+    if (isNaN(tipValue)) {
+
+    } else {
+        calculateTip();
+    }
+
+})
+
+
+
+
+
 // Actualizando el NumberPeople
 
 
 people.addEventListener("input", () => {
     peopleNumber = parseFloat(people.value)
-    calculateTip()
+    if(peopleNumber == 0 || isNaN(peopleNumber)) {
+        people.style.borderColor = "rgb(164, 68, 68)"
+        alert.classList.add("error")
+    } else{
+        people.style.borderColor = "hsl(189, 41%, 97%)"
+        alert.classList.remove("error")
+        calculateTip()
+    }
+
    })
 
+   //reset
+
+   let reset = document.getElementById("reset")
+
+   reset.addEventListener("click", function() {
+    bill.value = 0;
+    billNumber = 0;
+    people.value = 5;
+    peopleNumber = 5;
+    tipValue = 0;
+    custom.value= "custom";
+    calculateTip()
+   })
